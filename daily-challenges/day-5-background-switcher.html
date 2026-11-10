@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 - Background Switcher</title>
+</head>
+<body>
+    <h1>Background Color Switcher</h1>
+
+    <button data-color="lightblue">Blue</button>
+    <button data-color="lightgreen">Green</button>
+    <button data-color="lightpink">Pink</button>
+    <button data-color="white">Reset</button>
+
+    <script>
+        const buttons = document.querySelectorAll("button");
+
+        buttons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                document.body.style.backgroundColor = button.dataset.color;
+            });
+        });
+    </script>
+</body>
+</html>
