@@ -214,3 +214,157 @@ function addNavItem(text, href) {
 
 addNavItem("Blog", "/blog");
 addNavItem("Portfolio", "/portfolio");
+
+// ============================================
+// TASK 10.1: EVENT LISTENERS
+// ============================================
+
+const clickButton = document.querySelector("#click-button");
+const clickCount = document.querySelector("#click-count");
+
+let count = 0;
+
+// Listen for button clicks
+clickButton.addEventListener("click", function() {
+
+    count++;
+
+    clickCount.textContent = count;
+
+    console.log("Button clicked:", count);
+
+});
+
+// ============================================
+// TASK 10.2: EVENT OBJECT
+// ============================================
+
+const keyboardInput = document.querySelector("#keyboard-input");
+const keyboardOutput = document.querySelector("#keyboard-output");
+
+const mouseButton = document.querySelector("#mouse-button");
+
+// Listen for typing
+keyboardInput.addEventListener("input", function(event) {
+
+    keyboardOutput.textContent = "You typed: " + event.target.value;
+
+    console.log("Input value:", event.target.value);
+
+});
+
+// Listen for keyboard presses
+keyboardInput.addEventListener("keydown", function(event) {
+
+    console.log("Key pressed:", event.key);
+
+    if (event.key === "Enter") {
+        keyboardOutput.textContent = "You pressed Enter!";
+    }
+
+});
+
+// Listen for mouse clicks
+mouseButton.addEventListener("click", function(event) {
+
+    console.log("Clicked element:", event.target);
+
+    mouseButton.textContent = "You clicked me!";
+
+});
+
+// Listen for mouse hover
+mouseButton.addEventListener("mouseover", function() {
+
+    console.log("Mouse entered the button!");
+
+});
+
+// ============================================
+// TASK 10.3: EVENT BUBBLING AND DELEGATION
+// ============================================
+
+const delegationList = document.querySelector("#delegation-list");
+
+const addListItemButton = document.querySelector("#add-list-item");
+
+const delegationOutput = document.querySelector("#delegation-output");
+
+// ONE listener on the parent list
+delegationList.addEventListener("click", function(event) {
+
+    // Check whether an individual list item was clicked
+    if (event.target.tagName === "LI") {
+
+        delegationOutput.textContent =
+            "You selected: " + event.target.textContent;
+
+        console.log("Selected item:", event.target.textContent);
+
+    }
+
+});
+
+// Add new items dynamically
+let itemNumber = 4;
+
+addListItemButton.addEventListener("click", function() {
+
+    const newItem = document.createElement("li");
+
+    newItem.textContent = "Item " + itemNumber;
+
+    delegationList.appendChild(newItem);
+
+    itemNumber++;
+
+});
+
+// ============================================
+// TASK 10.4: FORM HANDLING AND VALIDATION
+// ============================================
+
+const practiceForm = document.querySelector("#practice-form");
+
+const practiceName = document.querySelector("#practice-name");
+
+const practiceEmail = document.querySelector("#practice-email");
+
+const formMessage = document.querySelector("#form-message");
+
+practiceForm.addEventListener("submit", function(event) {
+
+    // Prevent page refresh
+    event.preventDefault();
+
+    // Get and clean input values
+    const name = practiceName.value.trim();
+    const email = practiceEmail.value.trim();
+
+    // Check for empty fields
+    if (name === "" || email === "") {
+
+        formMessage.textContent = "Please fill in all fields.";
+
+        return;
+    }
+
+    // Check email format
+    if (!practiceEmail.checkValidity()) {
+
+        formMessage.textContent = "Please enter a valid email address.";
+
+        return;
+    }
+
+    // Display success message
+    formMessage.textContent =
+        "Thank you, " + name + "! Your form was submitted successfully.";
+
+    console.log("Name:", name);
+    console.log("Email:", email);
+
+    // Clear form
+    practiceForm.reset();
+
+});
