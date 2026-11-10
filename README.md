@@ -59,4 +59,4 @@ During this project, I learned how to:
 - Git and GitHub
 
 ## Live Demo
-Add your GitHub Pages link here after deployment.
+[View the live project](https://belinda-may.github.io/iyf-s12-week-05-Belinda-May/)
